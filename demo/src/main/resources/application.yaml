@@ -3,7 +3,7 @@ ktor:
         modules:
             - com.indexed.server.ApplicationKt.module
     deployment:
-        port: 8080
+        port: 9292
 
 # 使用者可配：资源来源目录、整理输出目录（与 SourceConfig / ScrapingOutputConfig 读取键一致）
 indexed:

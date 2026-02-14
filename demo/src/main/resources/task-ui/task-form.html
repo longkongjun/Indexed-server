@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Adding a new task</title>
+</head>
+<body>
+    <h1>Adding a new task</h1>
+    <form action="/tasks" method="post">
+        <p>Name: <input type="text" name="name" /></p>
+        <p>Description: <input type="text" name="description" /></p>
+        <p>Priority:
+            <select name="priority">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Vital">Vital</option>
+            </select>
+        </p>
+        <p><input type="submit" value="Submit" /></p>
+    </form>
+</body>
+</html>
