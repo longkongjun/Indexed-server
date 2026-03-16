@@ -16,11 +16,10 @@ import io.ktor.server.http.content.*
 import io.ktor.server.request.receiveParameters
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import io.ktor.server.thymeleaf.ThymeleafContent
 
 fun Application.configureRouting() {
     val sourceConfig = SourceConfig.from(environment.config)
-
-
 
     routing {
         staticResources("/content", "mycontent")
@@ -64,13 +63,11 @@ fun Application.configureRouting() {
             }
         }
 
+
+
         route("/tasks") {
             get {
-                val taskList = TaskRepository.allTasks()
-                call.respondText(
-                    contentType = ContentType.parse("text/html"),
-                    text = taskList.tasksAsTable()
-                )
+                call.respond(TaskRepository.allTasks())
             }
 
             get("/priority/{priority?}") {
