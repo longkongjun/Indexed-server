@@ -1,71 +1,61 @@
-package com.indexed.server.comics.model
+package com.indexed.server.comics.domain.model
 
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class ComicInfo(
+data class Comic(
     val id: String,
     val title: String,
-    val subtitle: String? = null,
-    val coverImageUrl: String? = null,
+    val subtitle: String?,
+    val coverImageUrl: String?,
     val chapterCount: Int,
     val pageCount: Int,
-    val rating: Double? = null,
-    val tags: List<String> = emptyList(),
+    val rating: Double?,
+    val tags: List<String>,
     val updatedAt: String
 )
 
-@Serializable
-data class ComicInfoPage(
-    val items: List<ComicInfo>,
+data class ComicPage(
+    val items: List<Comic>,
     val page: Int,
     val size: Int,
     val total: Int
 )
 
-@Serializable
-data class RecommendGroup(
+data class RecommendSection(
     val title: String,
-    val subtitle: String? = null,
+    val subtitle: String?,
     val style: String,
-    val items: List<ComicInfo>
+    val items: List<Comic>
 )
 
-@Serializable
 data class LastPosition(
     val chapterId: String,
     val chapterTitle: String,
     val pageIndex: Int
 )
 
-@Serializable
-data class ReadingHistoryItem(
-    val comic: ComicInfo,
+data class ReadingHistory(
+    val comic: Comic,
     val lastReadAt: String,
     val lastPosition: LastPosition
 )
 
-@Serializable
 data class ReadingHistoryPage(
-    val items: List<ReadingHistoryItem>,
+    val items: List<ReadingHistory>,
     val page: Int,
     val size: Int,
     val total: Int
 )
 
-@Serializable
 data class ComicMetadata(
     val title: String,
-    val originalTitle: String? = null,
-    val author: String? = null,
-    val description: String? = null,
-    val publisher: String? = null,
-    val releaseYear: Int? = null,
-    val language: String? = null,
-    val tags: List<String> = emptyList()
+    val originalTitle: String?,
+    val author: String?,
+    val description: String?,
+    val publisher: String?,
+    val releaseYear: Int?,
+    val language: String?,
+    val tags: List<String>
 )
 
-@Serializable
 data class LatestReadingProgress(
     val chapterId: String,
     val chapterTitle: String,
@@ -73,22 +63,20 @@ data class LatestReadingProgress(
     val lastReadAt: String
 )
 
-@Serializable
 data class ComicDetail(
     val id: String,
     val title: String,
-    val subtitle: String? = null,
-    val coverImageUrl: String? = null,
+    val subtitle: String?,
+    val coverImageUrl: String?,
     val chapterCount: Int,
     val pageCount: Int,
-    val tags: List<String> = emptyList(),
+    val tags: List<String>,
     val updatedAt: String,
     val metadata: ComicMetadata,
-    val latestReadingProgress: LatestReadingProgress? = null
+    val latestReadingProgress: LatestReadingProgress?
 )
 
-@Serializable
-data class ChapterItem(
+data class Chapter(
     val id: String,
     val title: String,
     val order: Int,
@@ -96,15 +84,13 @@ data class ChapterItem(
     val updatedAt: String
 )
 
-@Serializable
 data class ChapterSummary(
     val totalChapters: Int,
     val completed: Boolean,
     val lastUpdatedAt: String,
-    val chapters: List<ChapterItem>
+    val chapters: List<Chapter>
 )
 
-@Serializable
 data class ChapterPage(
     val pageIndex: Int,
     val width: Int,
@@ -112,12 +98,6 @@ data class ChapterPage(
     val contentUrl: String
 )
 
-@Serializable
 data class ChapterContent(
     val pages: List<ChapterPage>
-)
-
-@Serializable
-data class ErrorResponse(
-    val error: String
 )

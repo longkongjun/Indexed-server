@@ -1,24 +1,14 @@
 package com.indexed.server.comics.api
 
-import com.indexed.server.comics.model.ErrorResponse
+import com.indexed.server.comics.api.dto.ErrorResponse
+import com.indexed.server.comics.domain.model.ComicListQuery
+import com.indexed.server.comics.domain.model.PagingQuery
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.response.respond
 
 private val supportedClients = setOf("android", "ios", "desktop", "web")
 private val supportedSort = setOf("popularity", "rating", "updatedAt", "createdAt")
-
-data class PagingQuery(
-    val page: Int,
-    val size: Int
-)
-
-data class ComicListQuery(
-    val page: Int,
-    val size: Int,
-    val sort: String,
-    val keyword: String?
-)
 
 suspend fun ApplicationCall.requireClientOrRespond(): String? {
     val client = parameters["client"]
