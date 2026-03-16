@@ -7,3 +7,4 @@ dependencyResolutionManagement {
 }
 
 include("demo")
+include("comics-api")
